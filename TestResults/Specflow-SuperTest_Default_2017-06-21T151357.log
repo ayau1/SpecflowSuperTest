@@ -1,0 +1,34 @@
+﻿VS filter: testpath:TestAssembly:Specflow-SuperTest/Feature:ApplyOnline/Scenario:apply+online
+Discovering target: Default
+Discovering tests from assembly: C:\Dev\Specflow-SuperTest\Specflow-SuperTest\bin\Debug\Specflow-SuperTest.dll
+Appdomain Disposed
+Test Suite Dump
+#0: Specflow-SuperTest/Default - 
+#1: Default - 
+#2: Specflow-SuperTest - 
+#3: ApplyOnline - 
+#4: apply online - TestAssembly:Specflow-SuperTest/Feature:ApplyOnline/Scenario:apply+online
+End: Test Suite Dump
+Thread#0:Scheduler: get next test for thread
+Thread#:Scheduler: testitem #4 from normal test queue 
+Thread#0:Scheduler: considering testitem #4 for thread
+Thread#0:Scheduler: using testitem #4 for thread
+Thread#0:Scheduler: Test #4 is scheduled for thread
+Thread#0:Scheduler: with testItemExecutionIndex 0
+Thread #0: creating new test thread executor for Specflow-SuperTest, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null (target: Default)
+Loading SpecRun type 'TechTalk.SpecRun.Framework.TestAssemblyExecutor' from: C:\Users\Amie Yau\AppData\Local\Temp\VisualStudioTestExplorerExtensions\SpecRun.Runner.1.5.2\tools\TechTalk.SpecRun.Framework.Executor.dll
+Thread#0: Test #4/0 is started on thread #0
+Thread#0:B:Given I am on the price page
+Thread#0:T:error: Object reference not set to an instance of an object.
+Cancelling because configured number of failures reached
+Thread#0: Test #4/0 is finished on thread #0 as Failed within 6.6265773 seconds
+Appdomain Disposed
+Thread#-1:Scheduler: get next test for thread
+Thread#:Scheduler: at the end of normal test queue
+Thread#-1:Scheduler: enumerator for thread is at end
+Total: 1
+Succeeded: 0
+Ignored: 0
+Pending: 0
+Skipped: 0
+Failed: 1

@@ -73,6 +73,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BrowserSetup.cs" />
     <Compile Include="Features\ApplyOnline.feature.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

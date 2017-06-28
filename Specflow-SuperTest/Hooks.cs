@@ -10,21 +10,34 @@ using TechTalk.SpecFlow;
 namespace Specflow_SuperTest
 {
     [Binding]
-    public static class Hooks
+    public class Hooks
     {
-        public static IWebDriver _driver = new ChromeDriver();
+        public BrowserSetup BrowserSetup;
+        public IWebDriver Driver;
+
+        public Hooks()
+        {
+            BrowserSetup = new BrowserSetup();
+            Driver = BrowserSetup.Driver;
+        }
 
         [BeforeScenario]
-        public static void BeforeScenario()
+        public void BeforeScenario()
         {
             
-            _driver.Url = "http://life.qa.internal.comparethemarket.com/lifeinsurance";
+            
+            Driver.Url = "http://life.qa.internal.comparethemarket.com/lifeinsurance";
         }
 
         [AfterScenario]
-        public static void AfterScenario()
+        public void AfterScenario()
         {
-           _driver.Close();
+           Driver.Quit();
         }
     }
 }
+
+//Initialise the class into the Hooks file,
+//    declare a Webdriver(globally in Hooks)
+//    and then reference the new class WebDriver to it;
+//do this part in the 'BeforeScenario' attribute.

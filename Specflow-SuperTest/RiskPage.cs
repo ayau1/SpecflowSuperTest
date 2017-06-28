@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
@@ -11,24 +12,19 @@ using TechTalk.SpecFlow;
 
 namespace Specflow_SuperTest
 {//page object class
-    public class RiskPage
-    {
- 
-
-//        public void NavigateToRiskPage()
-//        {
-//            _driver.Url = "http://life.qa.internal.comparethemarket.com/lifeinsurance";
-//        }
+    public class RiskPage:BrowserSetup
+    {    
 
         public void SelectCoverType()
         {
-            IWebElement coverType = Hooks._driver.FindElement(By.Id("jointPolicyLabel"));
+            IWebElement coverType = Driver.FindElement(By.Id("jointPolicyLabel"));
             coverType.Click();
+            Thread.Sleep(5000);
         }
 
         public void SelectProposerTitle()
         {   
-            IWebElement proposerTitle = Hooks._driver.FindElement(By.Id("proposerTitle"));
+            IWebElement proposerTitle = Driver.FindElement(By.Id("proposerTitle"));
             proposerTitle.Click();
             SelectElement selectElement = new SelectElement(proposerTitle);
             selectElement.SelectByValue("MISS");
@@ -36,21 +32,21 @@ namespace Specflow_SuperTest
 
         public void EnterProposerFirstName()
         {
-            IWebElement proposerFirstName = Hooks._driver.FindElement(By.Id("proposerFirstname"));
+            IWebElement proposerFirstName = Driver.FindElement(By.Id("proposerFirstname"));
             proposerFirstName.SendKeys("PropFirstName");
         }
 
         public void EnterProposerLastName()
         {
-            IWebElement proposerLastName = Hooks._driver.FindElement(By.Id("proposerSurname"));
+            IWebElement proposerLastName = Driver.FindElement(By.Id("proposerSurname"));
             proposerLastName.SendKeys("PropLastName");
         }
 
         public void EnterDateOfBirth()
         {
-            IWebElement dateOfBirthDay = Hooks._driver.FindElement(By.Id("proposerDateOfBirthDay"));
-            IWebElement dateOfBirthMonth = Hooks._driver.FindElement(By.Id("proposerDateOfBirthMonth"));
-            IWebElement dateOfBirthYear = Hooks._driver.FindElement(By.Id("proposerDateOfBirthYear"));
+            IWebElement dateOfBirthDay = Driver.FindElement(By.Id("proposerDateOfBirthDay"));
+            IWebElement dateOfBirthMonth = Driver.FindElement(By.Id("proposerDateOfBirthMonth"));
+            IWebElement dateOfBirthYear = Driver.FindElement(By.Id("proposerDateOfBirthYear"));
 
             dateOfBirthDay.Click();
             SelectElement day = new SelectElement(dateOfBirthDay);
@@ -63,10 +59,10 @@ namespace Specflow_SuperTest
             year.SelectByValue("1979");
         }
 
-        public void CloseBrowser()
-        {
-            Hooks._driver.Quit();
-        }
+//        public void CloseBrowser()
+//        {
+//            Driver.Quit();
+//        }
 
     }
 }

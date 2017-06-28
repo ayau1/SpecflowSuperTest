@@ -12,20 +12,12 @@ namespace Specflow_SuperTest.StepDefinitions
     [Binding]
     public class RiskPageSteps
     {
+        public RiskPage RiskPage;
 
-        private RiskPage RiskPage = new RiskPage();
-
-
-        //        public RiskPageSteps()
-        //        {
-        //            RiskPage = new RiskPage(hooksDriver);
-        //        }
-
-
-        //        [BeforeScenario]
-        //        public void SetupPageObjects() { 
-        //         RiskPageVariable = new RiskPage(_driver);
-        //        }
+        public RiskPageSteps()
+        {
+            RiskPage = new RiskPage();
+        }
 
         [Given(@"I am on the price page")]
         public void GivenIAmOnThePricePage()

@@ -73,7 +73,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BrowserSetup.cs" />
+    <Compile Include="Support\BrowserSetup.cs" />
     <Compile Include="Features\ApplyOnline.feature.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -81,7 +81,7 @@
     </Compile>
     <Compile Include="Hooks.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="RiskPage.cs" />
+    <Compile Include="Pages\RiskPage.cs" />
     <Compile Include="StepDefinitions\RiskPageSteps.cs" />
   </ItemGroup>
   <ItemGroup>

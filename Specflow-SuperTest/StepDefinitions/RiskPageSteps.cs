@@ -22,7 +22,7 @@ namespace Specflow_SuperTest.StepDefinitions
         [Given(@"I am on the price page")]
         public void GivenIAmOnThePricePage()
         {
-        RiskPage.SelectCoverType();
+            RiskPage.CompleteSingleRisk();
         }
 
 

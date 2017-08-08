@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
+using Specflow_SuperTest.Pages;
 using TechTalk.SpecFlow;
 
 namespace Specflow_SuperTest.StepDefinitions

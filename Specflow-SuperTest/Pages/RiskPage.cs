@@ -1,22 +1,19 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading;
-using System.Threading.Tasks;
 using OpenQA.Selenium;
-using OpenQA.Selenium.Chrome;
+using OpenQA.Selenium.Interactions;
 using OpenQA.Selenium.Support.PageObjects;
 using OpenQA.Selenium.Support.UI;
-using Specflow_SuperTest.StepDefinitions;
-using TechTalk.SpecFlow;
 
-namespace Specflow_SuperTest
+namespace Specflow_SuperTest.Pages
 {//page object class
     public class RiskPage
         
     {
         private IWebDriver Driver;
+        private Actions Actions;
+
         #region Locators
         [FindsBy(How = How.Id, Using = "proposerTitle")]
         public IWebElement ProposerTitle;
@@ -28,6 +25,8 @@ namespace Specflow_SuperTest
         public RiskPage()
         {
             Driver = BrowserSetup.Driver;
+            PageFactory.InitElements(Driver, this);
+            Actions = new Actions(Driver);
         }
         public void CompleteSingleRisk(string smoker="no",string coverTerm="25",string coverAmount="250000",string emailAddress="test@test.com",
             string houseNumber="1",string postcode="PE26XJ",string contactPreferences= "deselect all")
@@ -50,25 +49,34 @@ namespace Specflow_SuperTest
 
         private void SubmitRisk()
         {
-            Driver.FindElement(By.CssSelector("button[test-id='submitRisk'")).Click();
+            var submit = Driver.FindElements(By.CssSelector("button[test-id='submitRisk'")).Last();
+            //ScrollElementInToView(submit);
+            submit.Click();
+        }
+
+        private void ScrollElementInToView(IWebElement submit)
+        {
+            Actions.MoveToElement(submit);
+            Actions.Perform();
         }
 
         private void AgreeTermsAndConditions()
         {
-            Driver.FindElement(By.Id("agreeTerms")).Click();
+            Driver.FindElement(By.Id("agreeTermsLabel")).Click();
         }
 
         private void SelectContactPreferences(string contactPreferences)
         {   //I need to refactor this to check if a preference is selected first 
             if (contactPreferences == "deselect all")
             {
-                Driver.FindElement(By.Id("contactByEmail")).Click();
-                Driver.FindElement(By.Id("contactByPost")).Click();
+                //Driver.FindElement(By.Id("contactByEmail")).Click();
+                Driver.FindElement(By.ClassName("email")).Click();
+                Driver.FindElement(By.ClassName("post")).Click();
             }
             else
             {
-                Driver.FindElement(By.Id("contactByPhone")).Click();
-                Driver.FindElement(By.Id("contactBySMS")).Click();
+                Driver.FindElement(By.ClassName("telephone")).Click();
+                Driver.FindElement(By.ClassName("sms")).Click();
             }
         }
 
@@ -139,16 +147,15 @@ namespace Specflow_SuperTest
             IWebElement dateOfBirthMonth = Driver.FindElement(By.Id("proposerDateOfBirthMonth"));
             IWebElement dateOfBirthYear = Driver.FindElement(By.Id("proposerDateOfBirthYear"));
 
-            dateOfBirthDay.Click();
             SelectElement day = new SelectElement(dateOfBirthDay);
-            Thread.Sleep(5000);
-            day.SelectByValue("1");
+            dateOfBirthDay.Click();
+            day.SelectByValue("string:01");
             dateOfBirthMonth.Click();
             SelectElement month = new SelectElement(dateOfBirthMonth);
-            month.SelectByValue("2");
+            month.SelectByValue("string:02");
             dateOfBirthYear.Click();
             SelectElement year = new SelectElement(dateOfBirthYear);
-            year.SelectByValue("1979");
+            year.SelectByValue("number:1979");
         }
 
 

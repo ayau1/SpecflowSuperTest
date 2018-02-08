@@ -6,7 +6,9 @@ using NUnit.Framework;
 using NUnit.Framework.Interfaces;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
+using OpenQA.Selenium.Support.UI;
 using Specflow_SuperTest.StepDefinitions;
+using Specflow_SuperTest.Support;
 using TechTalk.SpecFlow;
 
 namespace Specflow_SuperTest
@@ -16,20 +18,31 @@ namespace Specflow_SuperTest
     {
         public BrowserSetup BrowserSetup;
         public IWebDriver Driver;
+        public Urls Urls;
+        public GeneralMethods GeneralMethods;
 
         public Hooks()
         {
             BrowserSetup = new BrowserSetup();
             Driver = BrowserSetup.Driver;
+            Urls = new Urls();
+            GeneralMethods = new GeneralMethods();
         }
-
+        //can add these anywhere in your test solution
         [BeforeScenario]
         public void BeforeScenario()
         {
-            
-            
-            Driver.Url = "http://life.qa.internal.comparethemarket.com/LifeInsurance/Home/YourDetails?Affclie=TSTT";
+            if (ScenarioContext.Current.ScenarioInfo.Tags.Contains("signin")||FeatureContext.Current.FeatureInfo.Tags.Contains("signin"))
+            {
+                Driver.Url = Urls.baseUrl + "?affclie=TSTT";
+            }
+            else
+            {
+                Driver.Url = Urls.baseUrl + "home/yourdetails?affclie=TSTT";
+            }
+           GeneralMethods.WaitForElementToBeVisible(By.Id("proposerTitle"));
         }
+
 
         [AfterScenario]
         public void AfterScenario()

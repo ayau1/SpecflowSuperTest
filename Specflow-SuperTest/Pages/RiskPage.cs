@@ -5,10 +5,11 @@ using OpenQA.Selenium;
 using OpenQA.Selenium.Interactions;
 using OpenQA.Selenium.Support.PageObjects;
 using OpenQA.Selenium.Support.UI;
+using Specflow_SuperTest.Support;
 
 namespace Specflow_SuperTest.Pages
 {//page object class
-    public class RiskPage
+    public class RiskPage:GeneralMethods
         
     {
         private IWebDriver Driver;
@@ -28,6 +29,9 @@ namespace Specflow_SuperTest.Pages
             PageFactory.InitElements(Driver, this);
             Actions = new Actions(Driver);
         }
+        /// <summary>
+        /// this completes a valid single risk 
+        /// </summary>
         public void CompleteSingleRisk(string smoker="no",string coverTerm="25",string coverAmount="250000",string emailAddress="test@test.com",
             string houseNumber="1",string postcode="PE26XJ",string contactPreferences= "deselect all")
         {

@@ -1,6 +1,7 @@
 ﻿using System;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.UI;
+using Specflow_SuperTest.Support.Common;
 
 namespace Specflow_SuperTest.Support
 {
@@ -14,17 +15,17 @@ namespace Specflow_SuperTest.Support
         }
 
         public void WaitForElementToBeVisible(By element)
-        { //this is a global override
-            WebDriverWait wait = new WebDriverWait(Driver, TimeSpan.FromSeconds(30));
+        { 
+            WebDriverWait wait = new WebDriverWait(Driver, TimeSpan.FromSeconds(TimeoutTime.Timeout));
             wait.Until(ExpectedConditions.ElementIsVisible(element));
 
         }
 
-        public void WaitForElementToBeVisible(By element, TimeSpan timeSpan)
+        public void WaitForElementToBeClickable(By element)
         {
-            WebDriverWait wait = new WebDriverWait(Driver, timeSpan);
-            wait.Until(ExpectedConditions.ElementIsVisible(element));
 
+            WebDriverWait wait = new WebDriverWait(Driver, TimeSpan.FromSeconds(TimeoutTime.Timeout));
+            wait.Until(ExpectedConditions.ElementToBeClickable(element));
         }
     }
 }
